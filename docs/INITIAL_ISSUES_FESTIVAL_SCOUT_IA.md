@@ -4,6 +4,12 @@
 
 ---
 
+## ⚠️ Phase actuelle : V1 manuelle assistée par IA
+
+**Important :** Nous sommes en **V1 manuelle assistée par IA**. Le pipeline doit d'abord être validé manuellement avec prompts solides et Google Sheet maîtrisés. L'automatisation Make/n8n/API viendra plus tard, après validation complète du workflow.
+
+---
+
 ## 📝 Comment les utiliser :
 
 1. Allez sur : `https://github.com/nassimus13/Scout-Festival/issues`
@@ -15,7 +21,7 @@
 
 ---
 
-# 🎫 ISSUE #1 : Définir le workflow GitHub du projet Festival Scout IA
+# 🎯 ISSUE #1 : Définir le workflow GitHub du projet Festival Scout IA
 
 ## 🎯 Objectif
 
@@ -33,7 +39,7 @@ Sans un workflow clair, les tickets vont traîner partout, les rôles seront flo
 
 - ✅ Document `GITHUB_WORKFLOW_FESTIVAL_SCOUT_IA.md` complété
 - ✅ 9 colonnes Kanban clairement définies avec exemples
-- ✅ Règle centrale documentée : "Un ticket ne passe à Ready que si clarificé"
+- ✅ Règle centrale documentée : "Un ticket ne passe à Ready que si clarifié"
 - ✅ Guide d'utilisation du workflow (comment créer, prendre, valider un ticket)
 
 ## ✅ Critères d'acceptation
@@ -69,36 +75,56 @@ Sans un workflow clair, les tickets vont traîner partout, les rôles seront flo
 
 ---
 
-# 🎫 ISSUE #2 : Créer le prompt maître de recherche festivals
+# 🎯 ISSUE #2 : Créer le prompt maître de recherche festivals
 
 ## 🎯 Objectif
 
-Créer un prompt IA robuste qui prend en entrée les caractéristiques d'un film et retourne une liste de festivals potentiellement compatibles (format : CSV ou JSON avec nom + site + deadline).
+Créer un prompt IA robuste qui, à partir des caractéristiques de **MON FILM**, retourne une liste de **10 à 20 festivals fortement compatibles et vérifiés**.
+
+**Format de sortie :** TSV compatible Google Sheets + version Markdown lisible.
 
 ## 🧠 Contexte
 
-C'est le premier maillon de la chaîne. Si ce prompt n'est pas bon, tout le reste s'écroule. Besoin d'un prompt qui :
-- Prend en entrée : titre, genre, durée, public cible, synopsis court
-- Retourne : liste de festivals (min 20, max 100) avec URLs accessibles
-- Prioritaire sur la complétude plutôt que la perfection
+C'est le premier maillon de la chaîne. Si ce prompt n'est pas bon, tout le reste s'écroule. Le prompt doit :
+- Prendre en entrée : titre, genre, durée, public cible, synopsis, ADN du film
+- Retourner : **SEULEMENT** 10-20 festivals réellement compatibles (pas d'invention)
+- Vérifier les informations via sources officielles
+- Respecter les priorités du projet
 
 ## 📦 Sortie attendue
 
 - ✅ Prompt rédigé et documenté en Markdown
-- ✅ Testé manuellement sur au moins 3 films différents (cinéma + court-métrage)
-- ✅ Résultats testés et partagés (Google Doc ou screenshot)
-- ✅ Format de sortie clairement défini
-- ✅ Limites et améliorations potentielles documentées
+- ✅ Testé sur **MON FILM** + 2 variantes de recherche (ex: "angle auteur" vs "angle commercial")
+- ✅ Résultats testés et partagés (Google Sheet ou fichier TSV)
+- ✅ Format de sortie clairement défini : **TSV avec colonnes** = Nom | Site | Deadline | Catégories acceptées | Frais | Priorité
+- ✅ Limites et améliorations documentées
+- ✅ **Règles de vérification documentées**
 
 ## ✅ Critères d'acceptation
 
 - [ ] Prompt écrit et fonctionnel dans ChatGPT ou Claude
-- [ ] Testé sur 3 films (genres différents)
-- [ ] Retourne entre 15 et 50 festivals par film
-- [ ] Les URLs sont valides (au moins 80%)
-- [ ] Format de sortie cohérent
+- [ ] **Testé sur MON FILM** avec au moins 2 variantes de recherche
+- [ ] **Retourne 10-20 festivals** (ni plus, ni moins)
+- [ ] **AUCUNE donnée inventée :**
+  - ❌ Jamais inventer deadline
+  - ❌ Jamais inventer frais
+  - ❌ Jamais inventer contact
+  - ❌ Jamais inventer durée max
+  - ❌ Jamais inventer condition de première
+- [ ] **Informations vérifiées via sources officielles :**
+  - Site officiel du festival
+  - Règlement officiel
+  - FilmFreeway ou Festhome
+  - Shortfilmdepot (pour courts métrages)
+- [ ] Format TSV lisible et importable dans Google Sheets
 - [ ] Documentation avec exemples d'input/output
-- [ ] Limites expliquées (festivals régionaux, saisonniers, etc.)
+- [ ] **Priorités respectées :**
+  - Festivals courts métrages
+  - Cinéma auteur
+  - Festivals méditerranéens, arabes, africains
+  - Festivals francophones
+  - Drame familial, thriller social / polar intime
+- [ ] Cas manquants clairement marqués "à vérifier"
 
 ## ❓ Questions avant validation
 
@@ -106,7 +132,7 @@ C'est le premier maillon de la chaîne. Si ce prompt n'est pas bon, tout le rest
   - **Réponse :** À détailler
 - [ ] **Q2 :** Faut-il inclure les festivals en ligne ou juste physiques ?
   - **Réponse :** À détailler
-- [ ] **Q3 :** Quel est le délai acceptable d'actualité des festivals (2023 ? 2024 ?) ?
+- [ ] **Q3 :** Comment vérifier les infos si le site festival n'existe plus ou est mort ?
   - **Réponse :** À détailler
 
 ## 🔗 Dépendances
@@ -116,7 +142,7 @@ C'est le premier maillon de la chaîne. Si ce prompt n'est pas bon, tout le rest
 ## 🏷️ Labels recommandés
 
 - `Prompts IA`
-- `Pipeline`
+- `Recherche festivals`
 - `High`
 - `Prompt`
 - `À valider`
@@ -127,57 +153,58 @@ C'est le premier maillon de la chaîne. Si ce prompt n'est pas bon, tout le rest
 
 ---
 
-# 🎫 ISSUE #3 : Créer le prompt d'analyse détaillée d'un festival
+# 🎯 ISSUE #3 : Créer le prompt d'analyse détaillée d'un festival
 
 ## 🎯 Objectif
 
-Créer un prompt IA qui prend l'URL d'un festival et extrait intelligemment :
-- Dates limite candidature
-- Catégories acceptées (types de films)
-- Frais de candidature
-- Format accepté (DCP, ProRes, MP4, etc.)
-- Sélection (blind ou avec crédits ?)
-- Palmarès / prix
-- Contact principal
+Créer un prompt IA capable d'analyser les informations d'un festival (page web, règlement, bloc de texte copié-collé) et produire une **fiche d'analyse enrichie compatible avec FESTIVALS MASTER**.
 
 ## 🧠 Contexte
 
-Une fois qu'on a une liste de festivals, il faut les "analyser" pour savoir s'il vaut la peine de postuler. Ce prompt utilise la vision d'IA pour lire la page et extraire les infos pertinentes (plus rapide que du scraping web classique).
+Une fois qu'on a une liste de festivals, il faut les "analyser" pour comprendre vraiment si c'est pertinent pour MON FILM. Ce prompt fonctionne avec du copier-coller de règlements (pas d'API Vision obligatoire).
 
 ## 📦 Sortie attendue
 
-- ✅ Prompt documenté pour l'API Vision (OpenAI ou Claude)
-- ✅ Testé sur au moins 3 pages de festivals différentes
-- ✅ Format de sortie en JSON structuré
-- ✅ Cas d'erreur gérés (page pas chargée, infos manquantes, etc.)
+- ✅ Prompt documenté pour analyser les infos festivals
+- ✅ Testé sur 3 pages de festivals différentes (structures différentes)
+- ✅ Sortie structurée et compatible FESTIVALS MASTER
+- ✅ Champs enrichis avec analyse stratégique
 - ✅ Documentation avec exemple
 
 ## ✅ Critères d'acceptation
 
-- [ ] Prompt utilise Vision API correctement
-- [ ] Teste sur 3 festivals (structure différente)
-- [ ] JSON output bien structuré et validé
-- [ ] Extraction réussie à > 80%
-- [ ] Cas d'erreur documentés
-- [ ] Format cohérent avec le reste du pipeline
-- [ ] Commented in code
+- [ ] Prompt fonctionne avec texte copié-collé (SANS API Vision obligatoire)
+- [ ] Extrait les infos clés : deadline, catégories, frais, conditions
+- [ ] **Ajoute une analyse de compatibilité pour MON FILM :**
+  - ADN Festival : quelle est la personnalité du festival ?
+  - Pourquoi compatible ? (avec MON FILM spécifiquement)
+  - Pourquoi risqué ? (les raisons de ne pas sélectionner)
+  - Angle de candidature : quelle facette de MON FILM mettre en avant ?
+  - Accessibilité : quelle est la vraie sélectivité ?
+  - Potentiel réseau : peut-on faire des contacts ?
+  - Priorité : ranking de 1-5
+  - Stratégie diffusion : si on est sélectionné, ça nous sert à quoi ?
+  - Action suivante : que faire concrètement ?
+- [ ] **Règle stricte :** Si l'info manque → écrire **"à vérifier"** (jamais inventer)
+- [ ] Format clair et lisible (Markdown ou tableau)
+- [ ] Cas d'erreur gérés (page vide, infos manquantes, texte pourri)
+- [ ] Testé sur 3 festivals
 
 ## ❓ Questions avant validation
 
-- [ ] **Q1 :** Quel provider Vision utilise-t-on ? (OpenAI, Claude, Google ?)
+- [ ] **Q1 :** Doit-on analyser AUSSI les avis des créateurs sur le festival ? (networking, réputation)
   - **Réponse :** À détailler
-- [ ] **Q2 :** Comment gérer les festivals sans page web (dead link ou trop basiques) ?
+- [ ] **Q2 :** Comment gérer les festivals qui n'ont pas de règlement en ligne ?
   - **Réponse :** À détailler
 
 ## 🔗 Dépendances
 
-- Peut être fait en parallèle avec Issue #2
-- Utile une fois qu'on a une liste de festivals
+- Issue #2 (besoin d'avoir une liste de festivals d'abord)
 
 ## 🏷️ Labels recommandés
 
 - `Prompts IA`
-- `Pipeline`
+- `Analyse festivals`
 - `High`
 - `Prompt`
 - `À valider`
@@ -188,44 +215,73 @@ Une fois qu'on a une liste de festivals, il faut les "analyser" pour savoir s'il
 
 ---
 
-# 🎫 ISSUE #4 : Créer le prompt de préparation candidature béton
+# 🎯 ISSUE #4 : Créer le prompt de préparation candidature béton
 
 ## 🎯 Objectif
 
-Créer un prompt IA qui, à partir des infos de festival + characteristics du film, génère une première version du texte de candidature (synopsis court, arguments de vente, format spécifique au festival).
+Créer un prompt IA qui prépare une **candidature personnalisée et solide** pour MON FILM selon le festival cible.
+
+Le prompt doit adapter l'angle candidature selon le type de festival et produire une **checklist des assets** avant envoi.
 
 ## 🧠 Contexte
 
-Une fois qu'on sait à quel festival candidater, faut préparer la candidature. Ce prompt génère une première version de la "candidature béton" qu'on peut ensuite affiner manuellement. C'est du templating + génération IA.
+Une fois qu'on sait À QUEL FESTIVAL candidater, faut préparer une candidature béton. Ce prompt doit :
+- Générer un angle candidature adapté au festival
+- Produire un texte de candidature personnalisé (pas du copier-coller)
+- Générer un mail de candidature prêt à envoyer
+- Produire une checklist des assets nécessaires
+
+C'est du templating intelligent + génération IA pour la V1 manuelle.
 
 ## 📦 Sortie attendue
 
 - ✅ Prompt rédigé et testé
-- ✅ Testé sur 2 films × 2 festivals (4 combinaisons)
-- ✅ Génère du texte adapté au festival (pas du copier-coller)
+- ✅ Testé sur **MON FILM × 3 festivals cibles** (types différents : auteur, méditerranéen, social)
+- ✅ Pour chaque test : angle candidature + texte personnalisé + mail + checklist
 - ✅ Format Markdown structuré
-- ✅ Inclut une checklist de révision manuelle
+- ✅ Prêt à être copié-collé dans un email ou un formulaire
 
 ## ✅ Critères d'acceptation
 
-- [ ] Prompt prend en entrée : infos film + infos festival
-- [ ] Génère texte cohérent et spécifique au festival
-- [ ] Longueur adaptée (200-500 mots selon le festival)
-- [ ] Incluable dans un email ou un formulaire
-- [ ] Testé sur 4 combinaisons film/festival
-- [ ] Structuré en sections claires (synopsi + arguments + format)
-- [ ] Checklist de révision fournie
+- [ ] Prompt prend en entrée : infos MON FILM + infos festival cible + fiche analyse
+- [ ] **Génère l'angle candidature adapté :**
+  - Pour festival auteur : mets en avant la démarche créative
+  - Pour festival méditerranéen/arabe : angle culturel/géographique
+  - Pour festival social/thriller : angle message social / pertinence actuelle
+  - Pour festival francophone : références/connections françaises
+- [ ] **Génère un texte de candidature :**
+  - Personnalisé au festival (pas générique)
+  - Longueur adaptée (200-500 mots selon le festival)
+  - Tone adapté (formel, créatif, etc.)
+- [ ] **Génère un mail de candidature :**
+  - Sujet attractif et personnalisé
+  - Corps de mail personnalisé
+  - Signature propre
+- [ ] **Génère une checklist des assets :**
+  - Affiche (format/taille requis)
+  - Trailer/teaser (durée max)
+  - Photos de tournage (nombre/format)
+  - Bande sonore (si awards spéciaux)
+  - Sous-titres (langues demandées)
+  - DCP ou lien privé Vimeo
+  - Certificat international (si nécessaire)
+- [ ] **Testé sur 3 combinaisons :**
+  - MON FILM × Festival auteur
+  - MON FILM × Festival méditerranéen/arabe
+  - MON FILM × Festival social/thriller
+- [ ] Résultats documentés et révisables
+- [ ] Format prêt pour envoi
 
 ## ❓ Questions avant validation
 
-- [ ] **Q1 :** Faut-il personnaliser par genre de festival ou générique ?
+- [ ] **Q1 :** Doit-on faire des templates distincts par type de festival ou un seul prompt intelligent ?
   - **Réponse :** À détailler
-- [ ] **Q2 :** Tone : formel, créatif, ou équilibre ?
+- [ ] **Q2 :** À quel point personnaliser le mail ? Combien de recherche sur le festival ?
   - **Réponse :** À détailler
 
 ## 🔗 Dépendances
 
-- Issue #2 et #3 (utile d'avoir les infos film + festival d'abord)
+- Issue #2 et #3 (besoin des infos film + infos festival d'abord)
 
 ## 🏷️ Labels recommandés
 
@@ -241,23 +297,23 @@ Une fois qu'on sait à quel festival candidater, faut préparer la candidature. 
 
 ---
 
-# 🎫 ISSUE #5 : Créer le template standard des tickets GitHub
+# 🎯 ISSUE #5 : Valider et affiner le template standard des tickets GitHub
 
 ## 🎯 Objectif
 
-Valider et affiner le template d'issue `.github/ISSUE_TEMPLATE/festival_scout_task.md` pour que tous les tickets créés soient structurés et compréhensibles.
+Tester et affiner le template d'issue `.github/ISSUE_TEMPLATE/festival_scout_task.md` pour que tous les **futurs tickets du pipeline** soient structurés et compréhensibles.
 
 ## 🧠 Contexte
 
 On a créé un template mais faut le tester "en live" avec des vrais tickets. L'objectif est de s'assurer que :
-- La structure est claire
-- Chaque section a du sens
-- Les sections aident à la clarification
+- La structure est claire et utile
+- Chaque section aide à la clarification
 - Les critères d'acceptation sont bien définis
+- Le template fonctionne pour tous les types de tickets (prompts, documentation, etc.)
 
 ## 📦 Sortie attendue
 
-- ✅ Template testé avec au moins 2 tickets réels
+- ✅ Template testé avec au moins 2 tickets réels (issues #2, #3 ou #4)
 - ✅ Feedback: sections inutiles supprimées, sections manquantes ajoutées
 - ✅ Exemples dans le template mieux précisés
 - ✅ Template final validé et documenté
@@ -265,7 +321,7 @@ On a créé un template mais faut le tester "en live" avec des vrais tickets. L'
 
 ## ✅ Critères d'acceptation
 
-- [ ] 2 issues créées avec le template
+- [ ] 2 issues créées avec le template (ex: issues #2 et #3)
 - [ ] Template testable par n'importe quel débutant
 - [ ] Sections inutiles identifiées et supprimées
 - [ ] Sections manquantes ajoutées si besoin
@@ -277,7 +333,7 @@ On a créé un template mais faut le tester "en live" avec des vrais tickets. L'
 
 - [ ] **Q1 :** Faut-il d'autres sections ? (Timeline ? Budget ? Ressources ?)
   - **Réponse :** À détailler
-- [ ] **Q2 :** Les critères d'acceptation doivent-ils être toujours en checkbox ?
+- [ ] **Q2 :** Les critères d'acceptation doivent-ils toujours être en checkbox ?
   - **Réponse :** À détailler
 
 ## 🔗 Dépendances
@@ -297,10 +353,10 @@ On a créé un template mais faut le tester "en live" avec des vrais tickets. L'
 
 ---
 
-## 📌 Résumé des 5 issues
+## 📋 Résumé des 5 issues
 
 | # | Titre | Catégorie | Priorité | État initial |
-|---|-------|-----------|----------|---------------|
+|---|-------|-----------|----------|--------------|
 | 1 | Définir le workflow GitHub | Documentation | High | To refine |
 | 2 | Créer prompt recherche festivals | Prompts IA | High | To refine |
 | 3 | Créer prompt analyse festival | Prompts IA | High | To refine |
@@ -309,4 +365,13 @@ On a créé un template mais faut le tester "en live" avec des vrais tickets. L'
 
 ---
 
-**Prochaine étape :** Créer ces 5 issues et les mettre dans la colonne **To refine** du Project Kanban.
+## 🚀 Prochaine étape
+
+Créer ces 5 issues et les mettre dans la colonne **To refine** du Project Kanban.
+
+---
+
+**Phase :** V1 manuelle assistée par IA  
+**Prochaine étape après validation :** Automatisation Make/n8n après validation complète  
+**Créé pour :** Festival Scout IA (Projet perso)  
+**Dernière mise à jour :** 2026-06-06
