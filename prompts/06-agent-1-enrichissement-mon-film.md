@@ -203,18 +203,4 @@ Avant de terminer, vérifie que :
 * le résultat est lisible dans Google Sheets
 * AGENT 2 peut utiliser la fiche sans devoir deviner
 
----
-
-## Réponse finale attendue
-
-Réponds uniquement avec :
-
-1. Le tableau TSV
-2. Une courte section "Champs manquants ou à confirmer"
-3. Une courte section "Remarques pour AGENT 2"
-
-Ne fais pas d'explication longue.
-Ne donne pas de conseils généraux.
-Ne parle pas de festivals.
-Ne rédige pas d'email.
 
