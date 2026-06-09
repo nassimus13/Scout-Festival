@@ -154,14 +154,38 @@ Résultat final : Information manquante
 
 ## Format de sortie attendu
 
-Réponds uniquement avec :
+Réponds uniquement avec un bloc de code au format TSV.
 
-1. une première ligne contenant les 37 colonnes FESTIVAL MASTER
-2. une ligne par festival
-3. aucune explication supplémentaire
-4. aucun markdown
-5. aucun texte avant ou après le tableau
+Le bloc doit commencer par :
 
- 
+```tsv
+
+et se terminer par :
+
+```
+
+À l’intérieur du bloc de code :
+
+* la première ligne contient les 37 colonnes FESTIVAL MASTER
+* chaque ligne suivante correspond à un festival
+* les colonnes sont séparées par des tabulations
+* les URL sont écrites en texte brut
+* les emails sont écrits en texte brut
+* aucun lien Markdown ne doit apparaître
+* aucun format mailto: ne doit apparaître
+* aucune explication ne doit être ajoutée avant ou après le bloc
+
+Exemples attendus dans les cellules :
+https://example.com
+[email@example.com](mailto:email@example.com)
+https://facebook.com/festival
+@nomdufestival
+
+Exemples interdits :
+https://example.com
+[email@example.com](mailto:email@example.com)
+[Facebook](https://facebook.com/festival)
+
 Si la sortie contient un seul lien Markdown, la réponse est considérée comme invalide. Tu dois alors corriger automatiquement la sortie avant de la fournir.
+
 
