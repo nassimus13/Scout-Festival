@@ -47,26 +47,44 @@ Tu dois :
 * ne pas inventer de donnée factuelle
 * nettoyer les espaces inutiles
 * harmoniser les informations quand elles sont clairement fournies
-  Règle spéciale URL / emails :
 
-Les URL, emails et réseaux sociaux doivent toujours être écrits en texte brut.
+## Règle stricte URL / emails / réseaux sociaux
 
-Interdiction absolue d’utiliser :
+Les URL, emails et réseaux sociaux doivent toujours être écrits en texte brut uniquement.
 
-* des liens Markdown
-* des crochets
-* des parenthèses de lien
-* le format mailto:
-* des liens cliquables transformés
+Interdictions absolues :
+
+* Ne jamais utiliser de liens Markdown.
+* Ne jamais utiliser de crochets.
+* Ne jamais utiliser de parenthèses de lien.
+* Ne jamais utiliser le préfixe mailto:.
+* Ne jamais transformer une URL ou un email en lien cliquable.
+* Ne jamais écrire une valeur sous la forme [texte](lien).
+
+Si une donnée d’entrée contient déjà un lien Markdown, tu dois le nettoyer.
 
 Exemples interdits :
 https://example.com
 [email@example.com](mailto:email@example.com)
+[Facebook](https://facebook.com/festival)
 
 Exemples attendus :
 https://example.com
 [email@example.com](mailto:email@example.com)
+https://facebook.com/festival
 @nomdufestival
+
+Contrôle qualité obligatoire avant réponse :
+Avant de répondre, vérifie que le tableau final ne contient aucun des éléments suivants :
+
+* [
+* ]
+* ](
+* mailto:
+* ](mailto:
+
+Si l’un de ces éléments apparaît, corrige la sortie avant de répondre.
+
 
 
 ---
@@ -143,3 +161,7 @@ Réponds uniquement avec :
 3. aucune explication supplémentaire
 4. aucun markdown
 5. aucun texte avant ou après le tableau
+
+ 
+Si la sortie contient un seul lien Markdown, la réponse est considérée comme invalide. Tu dois alors corriger automatiquement la sortie avant de la fournir.
+
