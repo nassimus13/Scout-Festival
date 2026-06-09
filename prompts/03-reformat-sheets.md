@@ -47,6 +47,27 @@ Tu dois :
 * ne pas inventer de donnée factuelle
 * nettoyer les espaces inutiles
 * harmoniser les informations quand elles sont clairement fournies
+  Règle spéciale URL / emails :
+
+Les URL, emails et réseaux sociaux doivent toujours être écrits en texte brut.
+
+Interdiction absolue d’utiliser :
+
+* des liens Markdown
+* des crochets
+* des parenthèses de lien
+* le format mailto:
+* des liens cliquables transformés
+
+Exemples interdits :
+https://example.com
+[email@example.com](mailto:email@example.com)
+
+Exemples attendus :
+https://example.com
+[email@example.com](mailto:email@example.com)
+@nomdufestival
+
 
 ---
 
