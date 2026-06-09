@@ -158,21 +158,22 @@ Cette sortie doit être directement compatible avec l'onglet **MON FILM** du fic
 
 Le format attendu est un TSV horizontal.
 
-La première ligne doit contenir exactement les colonnes suivantes :
+La première ligne doit contenir exactement les 38 colonnes suivantes, dans cet ordre exact :
 
-Titre	Type	Genre principal	Sous-genres	Durée	Langue	Pays	Année	Réalisateur	Producteur	Synopsis court	Synopsis long	Thèmes	Style visuel	Ambiance	Références cinéma	Public cible	Format image	Format son	Caméra	Couleur / NB	Ratio image	Langues dialogues	Sous-titres	Pays de production	Année production	Bande-annonce	Dossier presse	LOGLINE	TAGLINE	Bio réal courte	Bio réal moyenne	Bio réal longue	Réseaux sociaux film	Objectif diffusion
+Titre du film	Type de film	Durée	Genre principal	Sous-genres	Pays de production	Langue originale	Sous-titres disponibles	Année de production	Statut du film	Logline	Synopsis court	Synopsis long	Note d'intention	Thèmes	Ambiance	Style visuel	Références cinéma	Public cible	Premières disponibles	Projections antérieures	Contraintes de diffusion	Zones géographiques ciblées	Types de festivals recherchés	Niveau de prestige recherché	Budget de soumission	Stratégie prioritaire	Lien de visionnage	Mot de passe	Trailer	Affiche	Photos	Dossier de presse	Bio réalisateur / réalisatrice	Contact production	Email de contact	Site web	Réseaux sociaux
 
 La deuxième ligne doit contenir les valeurs du film, dans le même ordre exact.
 
-Si une information manque, écrire :
+Règles de remplissage :
 
-Information manquante
-
-Si une information doit être vérifiée, écrire :
-
-À confirmer
-
-L'agent ne doit jamais inventer une donnée factuelle.
+- Si une information est fournie, la reprendre ou la nettoyer sans changer son sens.
+- Si une information manque, écrire : Information manquante
+- Si une information est incertaine, écrire : À confirmer
+- Ne jamais ajouter de colonne.
+- Ne jamais supprimer de colonne.
+- Ne jamais changer l’ordre des colonnes.
+- Ne jamais inventer une donnée factuelle.
+- La sortie doit pouvoir être copiée-collée directement dans Google Sheets.
 
 ---
 
