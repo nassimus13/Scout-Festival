@@ -125,6 +125,37 @@ Si une information est incertaine, écris clairement :
 
 L'agent doit produire deux sorties distinctes.
 
+## Standard de sortie — Mode manuel Google Sheets
+
+Pour les tests manuels dans Google Sheets, utilise un séparateur visible :
+
+|
+
+Règles obligatoires :
+
+* une ligne = un film
+* une colonne = une donnée
+* le séparateur entre les colonnes doit être uniquement |
+* ne jamais utiliser le caractère | à l’intérieur d’une cellule
+* aucune cellule ne doit contenir de retour à la ligne
+* les URL doivent être en texte brut
+* les emails doivent être en texte brut
+* ne jamais utiliser de liens Markdown
+* ne jamais utiliser le format mailto:
+* ne jamais ajouter d’explication inutile avant ou après les sorties demandées
+
+Pour la SORTIE 2 — Ligne compatible MON FILM :
+
+* utiliser exactement les 38 colonnes MON FILM
+* conserver l’ordre exact des colonnes
+* produire une première ligne d’en-têtes
+* produire une deuxième ligne avec les valeurs du film
+* utiliser le séparateur | entre les colonnes
+
+Pour Google Sheets :
+L’utilisateur pourra coller la sortie en A1, puis utiliser :
+Données → Scinder le texte en colonnes → Séparateur personnalisé → |
+
 ---
 
 ## SORTIE 1 - Rapport qualité
