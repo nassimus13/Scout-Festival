@@ -212,6 +212,30 @@ et se terminer par :
 * aucun lien Markdown ne doit apparaître
 * aucun format mailto: ne doit apparaître
 * aucune explication ne doit être ajoutée avant ou après le bloc
+* ## Standard de sortie — Mode manuel Google Sheets
+
+Pour les tests manuels dans Google Sheets, utilise un séparateur visible :
+
+|
+
+Règles obligatoires :
+
+* une ligne = un enregistrement
+* une colonne = une donnée
+* le séparateur entre les colonnes doit être uniquement |
+* ne jamais utiliser le caractère | à l’intérieur d’une cellule
+* aucune cellule ne doit contenir de retour à la ligne
+* les URL doivent être en texte brut
+* les emails doivent être en texte brut
+* ne jamais utiliser de liens Markdown
+* ne jamais utiliser le format mailto:
+* ne jamais ajouter d’explication avant ou après le tableau
+* répondre uniquement avec un bloc de code texte brut
+
+Pour Google Sheets :
+L’utilisateur pourra coller la sortie en A1, puis utiliser :
+Données → Scinder le texte en colonnes → Séparateur personnalisé → |
+
 
 ---
 
