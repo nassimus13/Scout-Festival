@@ -117,6 +117,7 @@ pour les champs suivants :
 * ADN Festival
 * Pourquoi compatible
 * Angle de candidature
+* Accesibilité
 * Compatibilité du film
 * Potentiel Réseau
 * Priorité
