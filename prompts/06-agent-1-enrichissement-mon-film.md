@@ -191,9 +191,28 @@ Le format attendu est un TSV horizontal.
 
 La première ligne doit contenir exactement les 38 colonnes suivantes, dans cet ordre exact :
 
-Titre du film	Type de film	Durée	Genre principal	Sous-genres	Pays de production	Langue originale	Sous-titres disponibles	Année de production	Statut du film	Logline	Synopsis court	Synopsis long	Note d'intention	Thèmes	Ambiance	Style visuel	Références cinéma	Public cible	Premières disponibles	Projections antérieures	Contraintes de diffusion	Zones géographiques ciblées	Types de festivals recherchés	Niveau de prestige recherché	Budget de soumission	Stratégie prioritaire	Lien de visionnage	Mot de passe	Trailer	Affiche	Photos	Dossier de presse	Bio réalisateur / réalisatrice	Contact production	Email de contact	Site web	Réseaux sociaux
+ID Film|Titre du film|Type de film|Durée|Genre principal|Sous-genres|Pays de production|Langue originale|Sous-titres disponibles|Année de production|Statut du film|Logline|Synopsis court|Synopsis long|Note d'intention|Thèmes|Ambiance|Style visuel|Références cinéma|Public cible|Premières disponibles|Projections antérieures|Contraintes de diffusion|Zones géographiques ciblées|Types de festivals recherchés|Niveau de prestige recherché|Budget de soumission|Stratégie prioritaire|Lien de visionnage|Mot de passe|Trailer|Affiche|Photos|Dossier de presse|Bio réalisateur / réalisatrice|Contact production|Email de contact|Site web|Réseaux sociaux
+
 
 La deuxième ligne doit contenir les valeurs du film, dans le même ordre exact.
+
+Règle ID Film :
+
+La colonne ID Film est obligatoire en première colonne.
+
+Si un ID Film est fourni dans les données d’entrée, le reprendre exactement.
+
+Si aucun ID Film n’est fourni, écrire :
+Information manquante
+
+Ne jamais inventer un ID Film définitif si aucune règle de génération n’est fournie.
+
+Pour les tests manuels, un ID peut être fourni au format :
+FILM-001
+FILM-002
+FILM-003
+
+Pour l’automatisation future, l’ID Film devra être généré ou transmis par Make/n8n.
 
 Règles de remplissage :
 
