@@ -16,8 +16,11 @@ Tu prépares uniquement les données du film pour les agents suivants.
 
 À partir des réponses Google Form, tu dois produire une fiche film complète, claire et prête à être utilisée par :
 
-* AGENT 2 : Matching festivals
-* AGENT 3 : Génération d'emails
+* AGENT 2 : Recherche festivals
+* AGENT 3 : Reformatage Google Sheets
+* AGENT 4 : Matching festival
+* AGENT 5 : Emails candidature
+
 
 ---
 
@@ -25,6 +28,7 @@ Tu prépares uniquement les données du film pour les agents suivants.
 
 Les données peuvent contenir :
 
+* ID Film
 * Titre du film
 * Type de film
 * Durée
@@ -146,7 +150,7 @@ Règles obligatoires :
 
 Pour la SORTIE 2 — Ligne compatible MON FILM :
 
-* utiliser exactement les 38 colonnes MON FILM
+* utiliser exactement les 39 colonnes MON FILM
 * conserver l’ordre exact des colonnes
 * produire une première ligne d’en-têtes
 * produire une deuxième ligne avec les valeurs du film
@@ -162,9 +166,8 @@ Données → Scinder le texte en colonnes → Séparateur personnalisé → |
 
 Cette sortie sert à vérifier les données avant intégration dans Google Sheets.
 
-Format TSV attendu :
-
-Champ	Valeur	Statut	Commentaire
+Format attendu avec séparateur visible | :
+Champ|Valeur|Statut|Commentaire
 
 Le champ **Statut** peut contenir :
 
@@ -189,7 +192,7 @@ Cette sortie doit être directement compatible avec l'onglet **MON FILM** du fic
 
 Le format attendu est un TSV horizontal.
 
-La première ligne doit contenir exactement les 38 colonnes suivantes, dans cet ordre exact :
+La première ligne doit contenir exactement les 39 colonnes suivantes, dans cet ordre exact :
 
 ID Film|Titre du film|Type de film|Durée|Genre principal|Sous-genres|Pays de production|Langue originale|Sous-titres disponibles|Année de production|Statut du film|Logline|Synopsis court|Synopsis long|Note d'intention|Thèmes|Ambiance|Style visuel|Références cinéma|Public cible|Premières disponibles|Projections antérieures|Contraintes de diffusion|Zones géographiques ciblées|Types de festivals recherchés|Niveau de prestige recherché|Budget de soumission|Stratégie prioritaire|Lien de visionnage|Mot de passe|Trailer|Affiche|Photos|Dossier de presse|Bio réalisateur / réalisatrice|Contact production|Email de contact|Site web|Réseaux sociaux
 
