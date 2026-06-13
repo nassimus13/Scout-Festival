@@ -147,8 +147,10 @@ Interdictions absolues :
 
 Exemples attendus :
 
+Exemples attendus :
+
 https://example.com
-[email@example.com](mailto:email@example.com)
+[email@example.com]
 https://facebook.com/festival
 @nomdufestival
 
@@ -163,10 +165,11 @@ Si une donnée d’entrée contient déjà un lien Markdown, tu dois le nettoyer
 Exemple :
 
 Donnée d’entrée :
-[programmation@example.com](mailto:programmation@example.com)
+[programmation@example.com]
 
 Sortie attendue :
-[programmation@example.com](mailto:programmation@example.com)
+[programmation@example.com]
+
 
 ---
 
