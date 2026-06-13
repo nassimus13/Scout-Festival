@@ -215,17 +215,33 @@ Règles :
 * Festival doit être repris depuis FESTIVAL MASTER.
 * ID Matching doit identifier une combinaison ID Film + Festival.
 
-Si aucun ID Matching n’est fourni, écrire :
+Règle ID Matching :
 
-Information manquante
+ID Matching est obligatoire en première colonne de MATCHING.
 
-Ne jamais inventer un ID Matching définitif si aucune règle de génération n’est fournie.
+Si un ID Matching est fourni dans les données d’entrée, le reprendre exactement.
 
-Pour les tests manuels, l’utilisateur peut fournir un ID Matching de type :
+Si aucun ID Matching n’est fourni, générer un ID Matching technique pour la sortie manuelle selon ce format :
 
-MATCH-001
+MATCH-[ID Film]-001
+MATCH-[ID Film]-002
+MATCH-[ID Film]-003
+
+Exemple avec ID Film = FILM-001 :
+
 MATCH-FILM-001-001
-MATCH-FILM-001-CLERMONT
+MATCH-FILM-001-002
+MATCH-FILM-001-003
+
+Règle :
+
+* un ID Matching unique par ligne MATCHING
+* ne jamais utiliser le même ID Matching pour deux festivals différents
+* conserver le même ID Film pour toutes les lignes liées au même film
+* l’ordre numérique suit l’ordre des festivals dans les données d’entrée
+
+Pour l’automatisation future, Make/n8n pourra générer ou remplacer ID Matching avec une règle plus robuste.
+
 
 ---
 
