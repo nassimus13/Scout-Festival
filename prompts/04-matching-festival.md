@@ -566,6 +566,7 @@ Avant de répondre, vérifie que :
 
 * chaque ligne contient exactement 40 champs
 * l’ordre des colonnes MATCHING est respecté
+* chaque ligne possède un ID Matching unique en première colonne
 * ID Film est repris depuis MON FILM
 * Titre du film est repris depuis MON FILM
 * Festival est repris depuis FESTIVAL MASTER
