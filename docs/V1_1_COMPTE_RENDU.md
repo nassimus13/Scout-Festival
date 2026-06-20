@@ -47,6 +47,45 @@ Règles validées :
 - Agent 4 ne rédige jamais les emails.
 - Agent 4 ne fait jamais de nouvelle recherche festival.
 
+## Test Agent 4 — FILM-004
+
+Test réalisé sur les données réelles du Google Sheets officiel.
+
+Donnée film vérifiée :
+
+- `ID Film` : `FILM-004`
+- `Titre du film` : `Derniers jours d'été`
+- `Type de film` : `Court métrage`
+- `Durée` : `18 min`
+- `Genre principal` : `Drame`
+- `Sous-titres disponibles` : `Anglais`
+
+Festivals testés depuis `FESTIVAL MASTER` :
+
+1. `Festival international du court métrage de Clermont-Ferrand`
+2. `Brussels Short Film Festival`
+3. `Un Festival C’est Trop Court`
+
+Résultat vérifié dans `MATCHING` :
+
+- `MATCH-FILM-004-001`
+- `MATCH-FILM-004-002`
+- `MATCH-FILM-004-003`
+
+Contrôles validés :
+
+- Les 3 lignes MATCHING existent.
+- Les 3 lignes sont liées à `FILM-004`.
+- Les 3 lignes reprennent le titre `Derniers jours d'été`.
+- Les 3 lignes respectent les 40 colonnes MATCHING.
+- Les champs de suivi sont conformes : `Statut = À traiter`, `Mail prêt = Non`.
+- Les données factuelles festival sont reprises depuis `FESTIVAL MASTER`.
+- Agent 4 ne produit pas d’email.
+
+Décision :
+
+Agent 4 est validé fonctionnellement sur le test réel `FILM-004`.
+
 ## Règle Agent 5 validée
 
 L’Agent 5 doit toujours générer un email complet en brouillon, même lorsque certaines informations manquent.
@@ -71,4 +110,4 @@ Une attention particulière doit être portée aux champs :
 
 ## Prochaine étape
 
-Tester Agent 4 sur les lignes réelles du film `FILM-004`, puis vérifier que la sortie Agent 4 alimente correctement Agent 5.
+Tester Agent 5 à partir des lignes `MATCHING` réelles du film `FILM-004`, puis vérifier que la sortie Agent 5 alimente correctement `EMAILS CANDIDATURE`.
