@@ -27,6 +27,64 @@ La V1.1 vise à fiabiliser le pipeline complet après l’arrivée d’un film d
 3. Les lignes de matching sont générées dans `MATCHING`.
 4. Les emails de candidature sont générés dans `EMAILS CANDIDATURE`.
 
+## Agent 2 — FESTIVAL MASTER
+
+Agent 2 a été relu dans :
+
+`prompts/02-recherche-festivals.md`
+
+Règles validées :
+
+- Agent 2 prépare uniquement la base neutre `FESTIVAL MASTER`.
+- Agent 2 ne produit pas `MATCHING`.
+- Agent 2 ne rédige pas d’emails.
+- Agent 2 ne doit pas écrire d’analyse personnalisée liée à un film précis dans `FESTIVAL MASTER`.
+- Les champs réservés à `MATCHING` doivent rester à `À compléter dans MATCHING` dans `FESTIVAL MASTER`.
+- Les informations inconnues doivent rester `Information manquante` ou `À vérifier`.
+- Les URL, emails et réseaux sociaux doivent rester en texte brut.
+- La sortie cible respecte exactement les 37 colonnes `FESTIVAL MASTER`.
+
+## Test Agent 2 — FESTIVAL MASTER
+
+Test réalisé sur les 3 festivals actuellement présents dans le Google Sheets officiel :
+
+1. `Festival international du court métrage de Clermont-Ferrand`
+2. `Brussels Short Film Festival`
+3. `Un Festival C’est Trop Court`
+
+Anomalie détectée :
+
+- Les colonnes personnalisées réservées à `MATCHING` contenaient encore de l’analyse film + festival dans `FESTIVAL MASTER`.
+
+Correction appliquée dans le Drive :
+
+Les colonnes suivantes ont été neutralisées dans `FESTIVAL MASTER` pour les 3 festivals :
+
+- `Pourquoi compatible`
+- `Angle de candidature`
+- `Accesibilité`
+- `Compatibilité du film`
+- `Potentiel Réseau`
+- `Priorité`
+- `Stratégie diffusion`
+
+Nouvelle valeur appliquée :
+
+`À compléter dans MATCHING`
+
+Contrôles validés après correction :
+
+- `FESTIVAL MASTER` contient bien 37 colonnes.
+- Les 3 festivals existent toujours.
+- Les champs factuels et éditoriaux neutres restent présents.
+- Les champs personnalisés liés au film sont maintenant réservés à `MATCHING`.
+- Les champs de suivi restent conformes : `Statut = À traiter`, `Mail prêt = Non`.
+- Les analyses personnalisées sont conservées dans `MATCHING` et non dans `FESTIVAL MASTER`.
+
+Décision :
+
+Agent 2 est validé fonctionnellement sur la structure `FESTIVAL MASTER` après correction de neutralité.
+
 ## Agent 4 — MATCHING
 
 Agent 4 a été repris et formalisé en V1.1 dans :
@@ -86,16 +144,51 @@ Décision :
 
 Agent 4 est validé fonctionnellement sur le test réel `FILM-004`.
 
-## Règle Agent 5 validée
+## Agent 5 — EMAILS CANDIDATURE
 
-L’Agent 5 doit toujours générer un email complet en brouillon, même lorsque certaines informations manquent.
+Agent 5 est formalisé dans :
 
-Règles de sortie :
+`prompts/05-emails-candidature.md`
 
+Règles validées :
+
+- L’Agent 5 génère une ligne `EMAILS CANDIDATURE` par ligne `MATCHING`.
+- L’Agent 5 doit toujours générer un email complet en brouillon, même lorsque certaines informations manquent.
 - `Mail prêt = Non` tant que le contact programmation, le lien de visionnage ou le mot de passe manquent.
 - `Statut email = Brouillon` par défaut.
 - `Contact programmation = À vérifier` si le contact n’est pas connu.
 - Ne jamais inventer de contact, de sélection, de prix ou de projection.
+
+## Test Agent 5 — FILM-004
+
+Test réalisé à partir des 3 lignes `MATCHING` réelles :
+
+- `MATCH-FILM-004-001`
+- `MATCH-FILM-004-002`
+- `MATCH-FILM-004-003`
+
+Résultat vérifié dans `EMAILS CANDIDATURE` :
+
+- `EMAIL-FILM-004-001`
+- `EMAIL-FILM-004-002`
+- `EMAIL-FILM-004-003`
+
+Contrôles validés :
+
+- Les 3 emails existent.
+- Chaque email est lié au bon ID Matching.
+- Chaque email est lié au bon ID Film.
+- Les objets mails sont remplis.
+- Les emails personnalisés sont complets.
+- `Mail prêt = Non`.
+- `Statut email = Brouillon`.
+- Les contacts programmation ne sont pas inventés.
+- Les notes email signalent les éléments à compléter.
+- Aucun prix, sélection ou projection n’est inventé.
+
+Décision :
+
+Agent 5 est validé fonctionnellement sur le test réel `FILM-004`.
 
 ## Point de vigilance
 
@@ -107,7 +200,8 @@ Une attention particulière doit être portée aux champs :
 - Lien de visionnage
 - Mot de passe
 - Contact programmation
+- Champs réservés à `MATCHING` dans `FESTIVAL MASTER`
 
 ## Prochaine étape
 
-Tester Agent 5 à partir des lignes `MATCHING` réelles du film `FILM-004`, puis vérifier que la sortie Agent 5 alimente correctement `EMAILS CANDIDATURE`.
+Poursuivre la V1.1 avec le contrôle de l’Agent 3 — reformatage Google Sheets — afin de garantir que les sorties Agents 2, 4 et 5 restent copiables, structurées et compatibles avec les onglets cibles.
